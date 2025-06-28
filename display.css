@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: none;
+}
+
+.display-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #000000;
+    overflow: hidden;
+}
+
+.scrolling-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+#textContent {
+    position: absolute;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Arial Black', Arial, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffffff;
+    white-space: nowrap;
+    will-change: transform;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Animation classes */
+.scroll-left {
+    animation: scrollLeft linear infinite;
+}
+
+.scroll-right {
+    animation: scrollRight linear infinite;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+/* Controls overlay */
+.controls-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.controls-overlay.show {
+    opacity: 1;
+}
+
+.control-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.control-btn:hover {
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.close-btn {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+}
+
+.close-btn:hover {
+    background: rgb(239, 68, 68);
+}
+
+/* Show controls on mouse movement */
+body:hover .controls-overlay {
+    opacity: 1;
+}
+
+/* Responsive font sizing */
+@media screen and (max-width: 1920px) {
+    #textContent {
+        font-size: calc(2vw + 20px);
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    #textContent {
+        font-size: calc(3vw + 15px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #textContent {
+        font-size: calc(4vw + 10px);
+    }
+    
+    .control-buttons {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .control-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    #textContent {
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    #textContent {
+        animation-duration: 20s !important;
+    }
+}

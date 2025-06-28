@@ -1,0 +1,25 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["glib", "gtk3", "libdrm", "xorg.libX11", "xorg.libXcomposite", "xorg.libXdamage", "xorg.libXext", "xorg.libXfixes", "xorg.libXrandr", "xorg.libXrender", "xorg.libXScrnSaver", "xorg.libXtst", "xorg.libxkbfile", "alsa-lib", "at-spi2-atk", "at-spi2-core", "atk", "cairo", "cups", "dbus", "expat", "fontconfig", "freetype", "gdk-pixbuf", "glibc", "libappindicator-gtk3", "libnotify", "libuuid", "nspr", "nss", "pango", "systemd", "xorg.libxcb", "mesa", "xvfb-run", "libxkbcommon"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Electron App"
+
+[[workflows.workflow]]
+name = "Electron App"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "xvfb-run -a npx electron main.js --no-sandbox --disable-dev-shm-usage"
