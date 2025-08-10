@@ -8,7 +8,7 @@ let tray = null;
 // Store application state
 let appState = {
   text: 'Hello World - Welcome to Scrolling Text Display!',
-  speed: 50,
+  speed: 30,
   direction: 'left',
   selectedDisplay: 0,
   isRunning: false,
