@@ -13,6 +13,7 @@ let appState = {
   selectedDisplay: 0,
   isRunning: false,
   fontSize: 48,
+  thickness: 200,
   textColor: '#ffffff',
   backgroundColor: '#000000'
 };
@@ -56,16 +57,20 @@ function createConfigWindow() {
   });
 }
 
-function createDisplayWindow(displayBounds) {
+function createDisplayWindow(displayBounds, thickness) {
   if (displayWindow) {
     displayWindow.close();
   }
+
+  // console.log(displayBounds);
+
+  height = thickness < displayBounds.height ? thickness : displayBounds.height;
 
   displayWindow = new BrowserWindow({
     x: displayBounds.x,
     y: displayBounds.y,
     width: displayBounds.width,
-    height: displayBounds.height,
+    height: height,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -74,7 +79,7 @@ function createDisplayWindow(displayBounds) {
     frame: false,
     alwaysOnTop: true,
     skipTaskbar: true,
-    fullscreen: true,
+    fullscreen: false,
     show: false
   });
 
@@ -152,7 +157,8 @@ ipcMain.handle('start-display', (event, config) => {
   const displays = screen.getAllDisplays();
   const selectedDisplay = displays[appState.selectedDisplay] || displays[0];
   
-  createDisplayWindow(selectedDisplay.bounds);
+  // console.log(config);
+  createDisplayWindow(selectedDisplay.bounds, config.thickness);
   
   return { success: true };
 });

@@ -14,6 +14,8 @@ class ScrollingTextConfig {
         this.fontSizeValue = document.getElementById('fontSizeValue');
         this.textColor = document.getElementById('textColor');
         this.backgroundColor = document.getElementById('backgroundColor');
+        this.thickness = document.getElementById('thickness');
+        this.thicknessValue = document.getElementById('thicknessValue');        
         this.speed = document.getElementById('speed');
         this.speedValue = document.getElementById('speedValue');
         this.direction = document.getElementById('direction');
@@ -40,6 +42,13 @@ class ScrollingTextConfig {
         // Font size slider
         this.fontSize.addEventListener('input', (e) => {
             this.fontSizeValue.textContent = `${e.target.value}px`;
+            this.updatePreview();
+            this.saveConfig();
+        });
+
+        // Thickness size slider
+        this.thickness.addEventListener('input', (e) => {
+            this.thicknessValue.textContent = `${e.target.value}px`;
             this.updatePreview();
             this.saveConfig();
         });
@@ -123,6 +132,8 @@ class ScrollingTextConfig {
         this.textInput.value = this.appState.text || '';
         this.fontSize.value = this.appState.fontSize || 48;
         this.fontSizeValue.textContent = `${this.fontSize.value}px`;
+        this.thickness.value = this.appState.thickness || 200;
+        this.thicknessValue.textContent = `${this.thickness.value}px`;
         this.textColor.value = this.appState.textColor || '#ffffff';
         this.backgroundColor.value = this.appState.backgroundColor || '#000000';
         this.speed.value = this.appState.speed || 50;
@@ -194,6 +205,7 @@ class ScrollingTextConfig {
         const config = {
             text: this.textInput.value,
             fontSize: parseInt(this.fontSize.value),
+            thickness: parseInt(this.thickness.value),
             textColor: this.textColor.value,
             backgroundColor: this.backgroundColor.value,
             speed: parseInt(this.speed.value),
@@ -210,9 +222,10 @@ class ScrollingTextConfig {
 
     async startDisplay() {
         const config = {
-            text: this.textInput.value || 'Hello World - Welcome to Scrolling Text Display!',
+            text: this.textInput.value,
             fontSize: parseInt(this.fontSize.value),
             textColor: this.textColor.value,
+            thickness: parseInt(this.thickness.value),
             backgroundColor: this.backgroundColor.value,
             speed: parseInt(this.speed.value),
             direction: this.direction.value,
