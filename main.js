@@ -7,9 +7,10 @@ let tray = null;
 
 // Store application state
 let appState = {
-  text: 'Hello World - Welcome to Scrolling Text Display!',
+  text: 'Howdy - Welcome to Scrolling Text Display!',
   speed: 30,
   direction: 'left',
+  position: 'middle',
   selectedDisplay: 0,
   isRunning: false,
   fontSize: 48,
@@ -62,13 +63,25 @@ function createDisplayWindow(displayBounds, thickness) {
     displayWindow.close();
   }
 
-  // console.log(displayBounds);
-
   height = thickness < displayBounds.height ? thickness : displayBounds.height;
+  
+  console.log("displayBounds Y " + displayBounds.y);
+  console.log("displayBounds Height " + displayBounds.height);
+  console.log("Height " + height);
+  console.log("Appstate Position " + appState.position);
+
+  _y = displayBounds.y;
+  if (appState.position === 'bottom') {
+    _y = displayBounds.height - height;
+  } else if (appState.position === 'top') {
+    _y = displayBounds.y;
+  } else if (appState.position === 'middle') {
+    _y = (displayBounds.height/2) - (height/2);
+  }
 
   displayWindow = new BrowserWindow({
     x: displayBounds.x,
-    y: displayBounds.y,
+    y: _y,
     width: displayBounds.width,
     height: height,
     webPreferences: {

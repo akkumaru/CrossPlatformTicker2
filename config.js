@@ -19,6 +19,9 @@ class ScrollingTextConfig {
         this.speed = document.getElementById('speed');
         this.speedValue = document.getElementById('speedValue');
         this.direction = document.getElementById('direction');
+        this.position = document.getElementById('position');
+        console.log("Direction element: ", this.position); // testing
+        console.log("Direction value: ", this.position.elements.positionElm.value); // testing
         this.displaySelect = document.getElementById('displaySelect');
         this.displayInfo = document.getElementById('displayInfo');
         
@@ -72,7 +75,16 @@ class ScrollingTextConfig {
         });
 
         // Direction select
-        this.direction.addEventListener('change', () => {
+        this.direction.addEventListener('change', (e) => {
+            this.updatePreview();
+            this.saveConfig();
+        });
+
+        // Direction select
+        this.position.addEventListener('change', (e) => {
+            console.log('Change event fired!', e); // testing
+            console.log('Target:', e.target); // testing
+            console.log('Target value:', e.target.value); // testing
             this.updatePreview();
             this.saveConfig();
         });
@@ -138,7 +150,8 @@ class ScrollingTextConfig {
         this.backgroundColor.value = this.appState.backgroundColor || '#000000';
         this.speed.value = this.appState.speed || 50;
         this.speedValue.textContent = this.speed.value;
-        this.direction.value = this.appState.direction || 'left';
+        this.direction.elements.directionElm.value = this.appState.direction || 'left';
+        this.position.elements.positionElm.value = this.appState.position || 'top';
         this.displaySelect.value = this.appState.selectedDisplay || 0;
         
         this.updatePreview();
@@ -168,7 +181,9 @@ class ScrollingTextConfig {
         const fontSize = this.fontSize.value;
         const textColor = this.textColor.value;
         const backgroundColor = this.backgroundColor.value;
-        const direction = this.direction.value;
+        const direction = this.direction.elements.directionElm.value;
+        const position = this.position.elements.positionElm.value;
+        console.log("Position Value " + position); // testing
         const speed = this.speed.value;
 
         // Update preview text
@@ -209,7 +224,8 @@ class ScrollingTextConfig {
             textColor: this.textColor.value,
             backgroundColor: this.backgroundColor.value,
             speed: parseInt(this.speed.value),
-            direction: this.direction.value,
+            direction: this.direction.elements.directionElm.value,
+            position: this.position.elements.positionElm.value,
             selectedDisplay: parseInt(this.displaySelect.value)
         };
 
@@ -228,7 +244,8 @@ class ScrollingTextConfig {
             thickness: parseInt(this.thickness.value),
             backgroundColor: this.backgroundColor.value,
             speed: parseInt(this.speed.value),
-            direction: this.direction.value,
+            direction: this.direction.elements.directionElm.value,
+            position: this.position.elements.positionElm.value,
             selectedDisplay: parseInt(this.displaySelect.value)
         };
 

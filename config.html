@@ -74,12 +74,37 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="direction">Direction:</label>
-                    <select id="direction">
-                        <option value="left">Left to Right</option>
-                        <option value="right">Right to Left</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="direction">Direction:</label>
+                        <form id="direction">
+                            <label>
+                                <input type="radio" name="directionElm" id="directionLeft" value="left" checked>
+                                Left to Right
+                            </label>
+                            <label>
+                                <input type="radio" name="directionElm" id="directionRight" value="right">
+                                Right to Left
+                            </label>
+                        </form>
+                    </div>
+                    <div class="form-col">
+                        <label for="position">Position:</label>
+                        <form id="position">
+                            <label>
+                                <input type="radio" name="positionElm" id="positionTop" value="top">
+                                Top of the screen
+                            </label>
+                            <label>
+                                <input type="radio" name="positionElm" id="positionMiddle" value="middle" checked>
+                                Middle of the screen
+                            </label>
+                            <label>
+                                <input type="radio" name="positionElm" id="positionBottom" value="bottom">
+                                Bottom of the screen
+                            </label>
+                        </form>
+                    </div>
                 </div>
             </section>
 
