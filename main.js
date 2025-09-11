@@ -8,7 +8,7 @@ let tray = null;
 // Store application state
 let appState = {
   text: 'Howdy - Welcome to Scrolling Text Display!',
-  speed: 30,
+  speed: 20,
   direction: 'left',
   position: 'middle',
   selectedDisplay: 0,
@@ -65,11 +65,6 @@ function createDisplayWindow(displayBounds, thickness) {
 
   height = thickness < displayBounds.height ? thickness : displayBounds.height;
   
-  console.log("displayBounds Y " + displayBounds.y);
-  console.log("displayBounds Height " + displayBounds.height);
-  console.log("Height " + height);
-  console.log("Appstate Position " + appState.position);
-
   _y = displayBounds.y;
   if (appState.position === 'bottom') {
     _y = displayBounds.height - height;
@@ -170,7 +165,6 @@ ipcMain.handle('start-display', (event, config) => {
   const displays = screen.getAllDisplays();
   const selectedDisplay = displays[appState.selectedDisplay] || displays[0];
   
-  // console.log(config);
   createDisplayWindow(selectedDisplay.bounds, config.thickness);
   
   return { success: true };

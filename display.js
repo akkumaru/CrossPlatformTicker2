@@ -10,7 +10,7 @@ class ScrollingTextDisplay {
             fontSize: 48,
             textColor: '#ffffff',
             backgroundColor: '#000000',
-            speed: 50,
+            speed: 20,
             direction: 'left'
         };
         
@@ -72,7 +72,8 @@ class ScrollingTextDisplay {
 
     updateDisplay() {
         // Update text content
-        this.textElement.textContent = this.config.text || 'Hello World - Welcome to Scrolling Text Display!';
+        this.textElement.textContent = this.config.text || ' ';
+        // this.textElement.textContent += " speed " + this.config.speed || ' '; // testing
         
         // Update styles
         this.textElement.style.fontSize = `${this.config.fontSize}px`;
@@ -88,7 +89,7 @@ class ScrollingTextDisplay {
         this.textElement.classList.remove('scroll-left', 'scroll-right');
         
         // Calculate animation duration based on speed (invert for intuitive control)
-        const duration = (101 - this.config.speed) * 0.1; // Speed range: 1-10 seconds
+        const duration = (101 - this.config.speed) * 0.2; // Speed range: 1-10 seconds
         
         // Apply animation
         const animationClass = this.config.direction === 'left' ? 'scroll-left' : 'scroll-right';
@@ -118,7 +119,7 @@ class ScrollingTextDisplay {
         clearTimeout(this.mouseTimer);
         this.mouseTimer = setTimeout(() => {
             this.hideControls();
-        }, 3000); // Hide after 3 seconds of no mouse movement
+        }, 2500); // Hide after 2.5 seconds of no mouse movement
     }
 
     // Initialize with responsive font sizing

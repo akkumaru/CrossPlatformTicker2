@@ -20,8 +20,6 @@ class ScrollingTextConfig {
         this.speedValue = document.getElementById('speedValue');
         this.direction = document.getElementById('direction');
         this.position = document.getElementById('position');
-        console.log("Direction element: ", this.position); // testing
-        console.log("Direction value: ", this.position.elements.positionElm.value); // testing
         this.displaySelect = document.getElementById('displaySelect');
         this.displayInfo = document.getElementById('displayInfo');
         
@@ -82,9 +80,6 @@ class ScrollingTextConfig {
 
         // Direction select
         this.position.addEventListener('change', (e) => {
-            console.log('Change event fired!', e); // testing
-            console.log('Target:', e.target); // testing
-            console.log('Target value:', e.target.value); // testing
             this.updatePreview();
             this.saveConfig();
         });
@@ -183,7 +178,6 @@ class ScrollingTextConfig {
         const backgroundColor = this.backgroundColor.value;
         const direction = this.direction.elements.directionElm.value;
         const position = this.position.elements.positionElm.value;
-        console.log("Position Value " + position); // testing
         const speed = this.speed.value;
 
         // Update preview text

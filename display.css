@@ -45,11 +45,17 @@ html, body {
 
 /* Animation classes */
 .scroll-left {
-    animation: scrollLeft linear infinite;
+    /* animation: scrollLeft linear infinite; */
+    animation-name: scrollLeft;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 .scroll-right {
-    animation: scrollRight linear infinite;
+    /* animation: scrollRight linear infinite; */
+    animation-name: scrollRight;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 @keyframes scrollLeft {
@@ -171,8 +177,8 @@ body:hover .controls-overlay {
 }
 
 /* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
     #textContent {
         animation-duration: 20s !important;
     }
-}
+} */

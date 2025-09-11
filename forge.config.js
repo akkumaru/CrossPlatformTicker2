@@ -4,6 +4,20 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
+    ignore: [
+      // Exclude development files
+      /^\/src\/.*\.ts$/,  // TypeScript source files
+      /^\/\.vscode/,
+      /^\/\.git/,
+      /^\/node_modules\/.*\/test/,
+      /^\/node_modules\/.*\/tests/,
+      /^\/node_modules\/.*\/example/,
+      /^\/node_modules\/.*\/examples/,
+      /^\/node_modules\/.*\/\.git/,
+      /^\/node_modules\/.*\/README/,
+      /^\/node_modules\/.*\/CHANGELOG/,
+      /^\/node_modules\/.*\/\.md$/
+    ]
   },
   rebuildConfig: {},
   makers: [
